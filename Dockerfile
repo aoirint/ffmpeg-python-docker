@@ -1,6 +1,8 @@
-FROM jrottenberg/ffmpeg
+FROM jrottenberg/ffmpeg:3.2-ubuntu
 
-ARG PYTHON_VERSION=3.8.5
+ARG DEBIAN_FRONTEND=noninteractive
+
+ARG PYTHON_VERSION=3.8.9
 ARG PYTHON_ROOT=/usr/local
 ARG PYENV_ROOT=/tmp/.pyenv
 ARG PYBUILD_ROOT=/tmp/python-build
