@@ -2,8 +2,8 @@ name: Docker registry
 
 on:
    push:
-     tags:
-       - 'v*'
+     branches:
+       - master
 
 jobs:
   dockerhub:
@@ -18,15 +18,9 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKER_REGISTRY_URL: docker.io
 
-      - name: Build :tag
+      - name: Build :latest
         if: success()
-        run: docker build -t aoirint/ffmpeg-python:${IMAGE_TAG} -t aoirint/ffmpeg-python:latest .
-
-      - name: Push to docker hub :tag
-        if: success()
-        uses: actions-hub/docker@master
-        with:
-          args: push aoirint/ffmpeg-python:${IMAGE_TAG}
+        run: docker build -t aoirint/ffmpeg-python:latest .
 
       - name: Push to docker hub :latest
         if: success()
